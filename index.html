@@ -6,16 +6,27 @@
 
   </head>
   <body>
-    <canvas id="snake" width="300" height="300"></canvas>
+    <canvas id="snake" width="600" height="600"></canvas>
     <script type="text/javascript">
       window.onload = function (e) {
         var c = document.getElementById("snake");
         var ctx = c.getContext("2d");
 
+        var width = c.width;
+        var height = c.height;
 
-
+        var tick = setInterval(draw, 1000);
+        //Draw function
+        function draw() {
+          console.log("r");
+          ctx.moveTo(0,0);
+          //x , y
+          ctx.lineTo(width, height);
+          ctx.stroke();
+        }
 
       }
+
     </script>
   </body>
 </html>
