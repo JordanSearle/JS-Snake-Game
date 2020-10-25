@@ -14,6 +14,7 @@
         var c = document.getElementById("snake");
         var ctx = c.getContext("2d");
         document.addEventListener('keypress', input);
+        var tickSpeed = 200;
         //0,0 = Top Left    //Width,Height = Bottom Right
         var width = c.width;
         var height = c.height;
@@ -29,7 +30,7 @@
         var points = 0;
 
 
-        var tick = setInterval(draw, 200);
+        var tick = setInterval(draw, tickSpeed);
         newBerry();
 
         function newBerry() {
@@ -139,6 +140,9 @@
             snakeLength++;
             newBerry();
             points++;
+            if (tickSpeed > 25) {
+              tickSpeed = tickSpeed - 5;
+            }
           }
           //Draw
           ctx.clearRect(0, 0, width, height);
@@ -159,15 +163,20 @@
               newBerry();
             }
 
+          ctx.stroke();
+
           if (gameover) {
             ctx.font = "30px Verdana";
             ctx.textAlign = "center";
             ctx.fillText("Gameover!", 300, 300);
             clearInterval(tick);
           }
+          else {
+            document.getElementById("points").innerHTML = points;
+            clearInterval(tick);
+            tick = setInterval(draw, tickSpeed);
+          }
 
-          ctx.stroke();
-          document.getElementById("points").innerHTML = points
         }
 
       }
