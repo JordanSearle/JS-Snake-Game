@@ -30,15 +30,44 @@
           var direction;
           return direction;
         }
+        function directionNum(dir,pos) {
+          switch (dir) {
+            case 'n':
+            //North
+            pos = [pos[0]-1,pos[1]];
+              break;
+            case 'e':
+            //East
+            pos = [pos[0],pos[1]+1];
+              break;
+            case 's':
+            //South
+            pos = [pos[0]+1,pos[1]];
+              break;
+            case 'w':
+            //West
+            pos = [pos[0],pos[1]-1];
+              break;
+            default:
 
+          }
+          return pos;
+        }
+
+        var direction = 'e';
+        var temp = 0;
         //Draw function
         function draw() {
+          var pos = directionNum(direction,[0,temp])
           ctx.clearRect(0, 0, width, height);
           //x , y
           ctx.moveTo(0,0);
           //x , y , rec.width, rec.height
-          ctx.fillRect(0, 0, 20, 20)
+
+          ctx.fillRect(pos[1]*10, pos[0], 20, 20)
           ctx.stroke();
+          temp++;
+          console.log(pos[1]*100);
         }
 
       }
